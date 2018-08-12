@@ -9,9 +9,11 @@ import { Subscription } from "rxjs";
 })
 export class CollectionsComponent implements OnInit, OnDestroy {
   private collectionAdded: Subscription;
-  collections: [Collection] = null;
+  collections: Collection[] = [];
+  filteredCollections: Collection[] = [];
   total: Number;
   addingCollection: Boolean = false;
+  searchParam: string;
 
   constructor(private collectionsService: CollectionsService) {}
 
@@ -29,6 +31,7 @@ export class CollectionsComponent implements OnInit, OnDestroy {
     this.collectionsService.getCollections()
       .subscribe((response) => {
         this.collections = response['data'];
+        this.filteredCollections = this.collections;
         this.total = response['total'];
       }, (error) => {
         console.log(error);
@@ -37,6 +40,18 @@ export class CollectionsComponent implements OnInit, OnDestroy {
 
   toggleForm() {
     this.addingCollection = !this.addingCollection;
+  }
+
+  cancel() {
+    this.addingCollection = false;
+  }
+
+  filterCollections(event) {
+    this.filteredCollections = this.collections.filter(
+      (collection) => {
+        const name = collection.name.toLowerCase();
+        return name.includes(this.searchParam.toLowerCase());
+      });
   }
 
   ngOnDestroy() {

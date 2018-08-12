@@ -1,0 +1,48 @@
+app-collections {
+
+  .collection-item-container {
+    @extend .col;
+    @extend .col-md-2;
+    @extend .col-sm-6;
+    @extend .col-12;
+    padding: 0.2rem;
+
+    .collection-item {
+      border-radius: 3px;
+      transition: all 0.2s;
+      height: 100px;
+      text-align: center;
+      line-height: 1rem;
+      width: 100%;
+      padding: 0.2rem;
+
+      @extend .border;
+
+      i {
+        display: block;
+        width: 100%;
+        padding: 0.5rem;
+        height: 50%;
+
+        &:before {
+          line-height: 36px;
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+        background-color: $secondary-color;
+        color: $background-color;
+
+        i {
+          color: $background-color;
+        }
+      }
+
+      i {
+        color: $secondary-color;
+      }
+    }
+  }
+
+}

@@ -15,6 +15,10 @@ export class CollectionsService {
     return this.httpClient.get(this.API_URI);
   }
 
+  getCollection(id: String) {
+    return this.httpClient.get(`${this.API_URI}/${id}`);
+  }
+
   saveCollection(collection: Collection) {
     return this.httpClient.post(this.API_URI, collection);
   }

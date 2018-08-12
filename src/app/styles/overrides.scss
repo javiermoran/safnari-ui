@@ -3,9 +3,11 @@ body {
 }
 
 .btn {
+  position: relative;
   transition: all 0.5s;
   font-family: $secondary-font2;
   overflow: hidden;
+  @extend .shine;
 
   &.btn-link {
     color: $secondary-color;
@@ -15,36 +17,5 @@ body {
   &.btn-primary {
     background-color: $secondary-color;
     border-color: $secondary-color;
-    position: relative;
-
-    &:after {
-      content: "";
-      position: absolute;
-      top: -110%;
-      left: -210%;
-      width: 200%;
-      height: 200%;
-      opacity: 0;
-      transform: rotate(5deg);
-      
-      background: rgba(255, 255, 255, 0.13);
-      background: linear-gradient(
-        to right, 
-        rgba(255, 255, 255, 0.13) 0%,
-        rgba(255, 255, 255, 0.13) 77%,
-        rgba(255, 255, 255, 0.5) 92%,
-        rgba(255, 255, 255, 0.0) 100%
-      );
-    }
-    
-    &:hover:after {
-      opacity: 0.6;
-      top: -30%;
-      left: -30%;
-      transition-property: left, top, opacity;
-      transition-duration: 0.4s, 0.4s, 0.15s;
-      transition-timing-function: ease;
-    }
-    
   }
 }

@@ -1,0 +1,1 @@
+rm -R ../../api/app/public && cp -R ./dist/collector ../../api/app/public

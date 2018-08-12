@@ -1,16 +1,40 @@
-<h1>Collections</h1>
+<router-outlet>
+  <h1>Collections</h1>
 
-<ng-container *ngIf="!addingCollection">
-  <button class="btn btn-link" (click)="toggleForm()">
-    Add Collection
-  </button>
-</ng-container>
-<ng-container *ngIf="addingCollection">
-  <app-coll-form></app-coll-form>
-</ng-container>
+  <div class="row">
+    <div class="form-group col">
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text">
+            <i class="fas fa-search"></i>
+          </span>
+        </div>
+        <input type="text" class="form-control" 
+              [(ngModel)]="searchParam" 
+              (keyup)="filterCollections($event)">
+      </div>
+    </div>
+  </div>
 
-<ul class="list-group">
-  <li *ngFor="let collection of collections" class="list-group-item">
-    {{ collection.name }}
-  </li>
-</ul>
+  <ng-container *ngIf="addingCollection">
+    <app-coll-form (cancel)="cancel($event)"></app-coll-form>
+  </ng-container>
+
+  <div class="row">
+    <ng-container *ngIf="!addingCollection">
+      <div class="collection-item-container">
+        <div (click)="toggleForm()" class="collection-item">
+          <i class="fas fa-plus"></i>
+          Add new
+        </div>
+      </div>
+    </ng-container>
+
+    <div class="collection-item-container" *ngFor="let collection of filteredCollections">
+      <div class="collection-item" routerLink="{{ collection._id }}">
+        <i title="{{ collection.type.description }}" class="fas {{ collection.type.icon }} mr-1"></i>
+        {{ collection.name }}
+      </div>
+    </div>
+  </div>
+</router-outlet>
