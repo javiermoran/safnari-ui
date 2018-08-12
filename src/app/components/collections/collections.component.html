@@ -1,7 +1,16 @@
-<div *ngIf="!collections">
-  No collections
-</div>
+<h1>Collections</h1>
 
-<div *ngFor="let collection of collections">
+<ng-container *ngIf="!addingCollection">
+  <button class="btn btn-link" (click)="toggleForm()">
+    Add Collection
+  </button>
+</ng-container>
+<ng-container *ngIf="addingCollection">
+  <app-coll-form></app-coll-form>
+</ng-container>
 
-</div>
+<ul class="list-group">
+  <li *ngFor="let collection of collections" class="list-group-item">
+    {{ collection.name }}
+  </li>
+</ul>

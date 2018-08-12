@@ -17,6 +17,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { CollectionsComponent } from './components/collections/collections.component';
+import { CollectionFormComponent } from './components/collections/collection-form/collectionForm.component';
 
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { UnauthorizedInterceptor } from './interceptors/unauthorized.interceptor';
@@ -28,7 +29,8 @@ import { UnauthorizedInterceptor } from './interceptors/unauthorized.interceptor
     LoginComponent,
     HeaderComponent,
     DashboardComponent,
-    CollectionsComponent
+    CollectionsComponent,
+    CollectionFormComponent
   ],
   imports: [
     BrowserModule,

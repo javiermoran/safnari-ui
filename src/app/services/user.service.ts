@@ -9,7 +9,7 @@ import { HttpClient } from "@angular/common/http";
 @Injectable()
 export class UserService {
   private API_URI = `${environment.apiUrl}/users`;
-  private user;
+  public user;
   tokenChanged = new Subject<{}>();
 
   constructor(

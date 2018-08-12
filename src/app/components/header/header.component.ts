@@ -10,6 +10,7 @@ import { Subscription } from "rxjs";
 export class HeaderComponent implements OnInit, OnDestroy {
   authorized: Boolean;
   tokenChanged: Subscription;
+  username: String;
 
   constructor(
     private userService: UserService,
@@ -20,7 +21,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.checkAuth();
 
     this.tokenChanged = this.userService
-      .tokenChanged.subscribe(this.checkAuth.bind(this));
+      .tokenChanged.subscribe((user) => {
+        console.log(user);
+        this.checkAuth();
+      });
   }
 
   checkAuth() {
