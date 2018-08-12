@@ -1,0 +1,47 @@
+<small *ngIf="message" [ngClass]="{'text-danger': error, 'text-success': success}">
+  {{ message }}
+</small>
+
+<form [formGroup]="signUpForm" (ngSubmit)="submit()" *ngIf="!success">
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" id="email" formControlName="email" required>
+
+    <small *ngIf="!signUpForm.get('email').valid && signUpForm.get('email').touched" 
+            class="form-text text-danger">Invalid email</small>
+  </div>
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" id="username" formControlName="username" required>
+
+    <small *ngIf="!signUpForm.get('username').valid && signUpForm.get('username').touched" 
+            class="form-text text-danger">Username is required</small>
+  </div>
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" class="form-control" id="password" 
+        [(ngModel)]="password" 
+        formControlName="password" required>
+
+    <small *ngIf="!signUpForm.get('password').valid && signUpForm.get('password').touched" 
+            class="form-text text-danger">Password is required</small>
+  </div>
+  <div class="form-group">
+    <label for="passwordconfirm">Confirm password</label>
+    <input type="password" class="form-control" id="passwordconfirm" formControlName="passwordconfirm" required>
+
+    <div *ngIf="!signUpForm.get('passwordconfirm').valid && signUpForm.get('passwordconfirm').touched">
+        <small *ngIf="signUpForm.get('passwordconfirm').errors['required']" class="form-text text-danger">
+          Password confirmation is required
+        </small>
+        <small *ngIf="signUpForm.get('passwordconfirm').errors['passwordmatch'] && 
+                      !signUpForm.get('passwordconfirm').errors['required']" 
+                      class="form-text text-danger">
+          Passwords must match
+        </small>
+    </div>
+    
+  </div>
+    
+  <button class="btn btn-primary" type="submit" [disabled]="signUpForm.invalid">Sign in</button>
+</form>

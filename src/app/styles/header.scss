@@ -1,0 +1,27 @@
+header {
+  padding: 1rem;
+  background-color: $primary-color;
+
+  a, span {
+    color: $background-color;
+    cursor: pointer;
+
+    &:hover {
+      color: $background-color;
+      text-decoration: underline;
+    }
+  }
+
+  .logo {
+    font-family: $logo-font;
+    color: $background-color;
+    font-size: 1.6rem;
+    font-weight: bold;
+    transition: all 0.1s ease-out;
+    cursor: pointer;
+
+    &:hover {
+      transform: rotate(-2deg) scale(1.1);
+    }
+  }
+}
