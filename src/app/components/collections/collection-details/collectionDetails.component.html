@@ -1,1 +1,13 @@
 <h1>{{ collection.name }} collection</h1>
+
+<ng-container *ngIf="addingItem">
+  <app-item-form [collection]="collection._id" 
+                 [type]="collection.type._id" 
+                 (cancel)="cancel($event)">
+  </app-item-form>
+</ng-container>
+<ng-container *ngIf="!addingItem">
+  <a (click)="addingItem = !addingItem">Add new</a>  
+</ng-container>
+
+<app-items [collection]="collection._id" [type]="collection.type._id"></app-items>

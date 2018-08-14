@@ -20,6 +20,8 @@ import { CollectionsComponent } from './components/collections/collections.compo
 import { CollectionFormComponent } from './components/collections/collection-form/collectionForm.component';
 import { CollectionDetailsComponent } from './components/collections/collection-details/collectionDetails.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ItemsComponent } from './components/items/items.component';
+import { ItemFormComponent } from './components/items/item-form/itemForm.component';
 
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { UnauthorizedInterceptor } from './interceptors/unauthorized.interceptor';
@@ -33,7 +35,9 @@ import { UnauthorizedInterceptor } from './interceptors/unauthorized.interceptor
     CollectionsComponent,
     CollectionFormComponent,
     CollectionDetailsComponent,
-    HeaderComponent
+    HeaderComponent,
+    ItemsComponent,
+    ItemFormComponent
   ],
   imports: [
     BrowserModule,
