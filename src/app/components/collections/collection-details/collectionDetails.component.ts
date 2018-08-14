@@ -9,7 +9,7 @@ import { ItemsService } from "../../../services/items.service";
   templateUrl: './collectionDetails.component.html'
 })
 export class CollectionDetailsComponent implements OnInit, OnDestroy {
-  collection = {};
+  collection: any = {};
   addingItem: boolean = false;
   itemAdded: Subscription;
 
