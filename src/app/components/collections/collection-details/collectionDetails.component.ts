@@ -10,25 +10,30 @@ import { ItemsService } from "../../../services/items.service";
 })
 export class CollectionDetailsComponent implements OnInit, OnDestroy {
   collection: any = {};
+  items: any = [];
   addingItem: boolean = false;
   itemAdded: Subscription;
+  id: string;
 
   constructor(
     private route: ActivatedRoute,
     private collService: CollectionsService,
-    private itemService: ItemsService
+    private itemsService: ItemsService
   ) {}
 
   ngOnInit() {
     this.collection['type'] = {}
 
     this.route.params.subscribe((params) => {
+      this.id = params.id;
       this.getCollectionInfo(params.id);
+      this.getItems(params.id);
     });
 
-    this.itemAdded = this.itemService.itemAdded
-      .subscribe(() => {
+    this.itemAdded = this.itemsService.itemAdded
+      .subscribe((item) => {
         this.addingItem = false;
+        this.getItems(this.id);
       });
   }
 
@@ -39,6 +44,15 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
         this.addingItem = false;
       }, (error) => {
         console.log(error);
+      })
+  }
+
+  getItems(collection: string) {
+    this.itemsService.getItems(collection)
+      .subscribe((res) => {
+        this.items = res['data'];
+      }, (err) => {
+        console.log(err);
       })
   }
 

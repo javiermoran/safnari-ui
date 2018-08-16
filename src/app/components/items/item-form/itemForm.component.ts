@@ -25,6 +25,7 @@ export class ItemFormComponent implements OnInit {
       title: new FormControl('', Validators.required),
       number: new FormControl('', Validators.min(0)),
       publisher: new FormControl(''),
+      artist: new FormControl(''),
       format: new FormControl('')
     });
   }
@@ -40,12 +41,14 @@ export class ItemFormComponent implements OnInit {
   }
 
   submit() {
-    const { title, number, publisher, format } = this.itemForm.value;
+    const val = this.itemForm.value;
+    const { title, number, publisher, artist, format } = val;
 
     const newItem = new Item(
       title, 
       number, 
       publisher, 
+      artist,
       format, 
       this.image, 
       this.type, 

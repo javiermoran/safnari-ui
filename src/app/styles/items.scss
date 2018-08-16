@@ -1,0 +1,19 @@
+app-item {
+  .item {
+    @extend .collection-item;
+    height: auto;
+    padding-bottom: 0.5rem;
+  }
+  .item-image {
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    background-size: cover;
+    margin-bottom: 0.5rem;
+    &.cbook {
+      padding-top: 155%;
+    }
+    &.record {
+      padding-top: 100%;
+    }
+  }
+}

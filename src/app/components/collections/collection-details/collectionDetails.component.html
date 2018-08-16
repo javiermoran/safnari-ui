@@ -7,7 +7,13 @@
   </app-item-form>
 </ng-container>
 <ng-container *ngIf="!addingItem">
-  <a (click)="addingItem = !addingItem">Add new</a>  
+  <a (click)="addingItem = !addingItem">Add new</a>
+  
+  <div class="container">
+    <div class="row">
+      <div *ngFor="let item of items" class="collection-item-container">
+        <app-item [item]="item"></app-item>
+      </div>
+    </div>
+  </div>
 </ng-container>
-
-<app-items [collection]="collection._id" [type]="collection.type._id"></app-items>
