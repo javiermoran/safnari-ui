@@ -3,15 +3,18 @@
 
   <div class="row">
     <div class="form-group col">
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text">
-            <i class="fas fa-search"></i>
+      <div class="input-group mb-1">
+        <div class="search-input" [ngClass]="{active: searchParam}">
+          <i class="fas fa-search" [ngClass]="{active: searchParam}"></i>
+          <span class="search-text">
+            | {{ total }} collection
+            <span *ngIf="total > 1">s</span>
           </span>
-        </div>
-        <input type="text" class="form-control" 
+          <input type="text" [ngClass]="{active: searchParam}"
               [(ngModel)]="searchParam" 
+              placeholder="Search in your collections..."
               (keyup)="filterCollections($event)">
+        </div>        
       </div>
     </div>
   </div>
@@ -20,7 +23,7 @@
     <app-coll-form (cancel)="cancel($event)"></app-coll-form>
   </ng-container>
 
-  <div class="row">
+  <div class="row" *ngIf="!addingCollection">
     <ng-container *ngIf="!addingCollection">
       <div class="collection-item-container">
         <div (click)="toggleForm()" class="collection-item">
@@ -29,7 +32,7 @@
         </div>
       </div>
     </ng-container>
-
+    
     <div class="collection-item-container" *ngFor="let collection of filteredCollections">
       <div class="collection-item" routerLink="{{ collection._id }}">
         <i title="{{ collection.type.description }}" class="fas {{ collection.type.icon }} mr-1"></i>

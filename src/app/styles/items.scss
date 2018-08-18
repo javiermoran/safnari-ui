@@ -1,8 +1,15 @@
-app-item {
+app-item, .app-item {
   .item {
     @extend .collection-item;
     height: auto;
     padding-bottom: 0.5rem;
+    .add-item {
+      position: absolute;
+      top: 25%;
+      width: 100%;
+      display: inline-block;
+      left: 0;
+    }
   }
   .item-image {
     border-top-right-radius: 4px;
