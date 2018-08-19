@@ -12,7 +12,11 @@ export class StatisticsService {
     return this.httpClient.get(`${this.API_URI}/counts`);
   }
 
-  getCollectionsItemCount() {
+  getCollectionsTypeCount() {
     return this.httpClient.get(`${this.API_URI}/collections/types`);
+  }
+
+  getItemsTypeCount() {
+    return this.httpClient.get(`${this.API_URI}/items/types`);
   }
 }

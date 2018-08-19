@@ -1,6 +1,7 @@
 app-bar-graph {
   @extend .col;
   @extend .col-12;
+  display: block;
   svg {
     margin-top: 20px;
     .bargraph-bar {

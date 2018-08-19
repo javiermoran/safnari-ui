@@ -13,7 +13,7 @@ export class BarGraphComponent implements OnInit, OnChanges, OnDestroy {
   width: number;
   barWidth: number;
   max: number;
-  padding: number = 30;
+  padding: number = 10;
   height: number = 200;
   ySizing: any; 
   svgGroup: any;

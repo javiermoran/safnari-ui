@@ -11,6 +11,7 @@ export class DashboardComponent implements OnInit {
   username: String;
   counts: { collections: number, items: number } = { collections: 0, items: 0 };
   typesGraphData: BarGraphModel[] = [];
+  itemTypesGraphData: BarGraphModel[] = [];
 
   constructor(
     private userService: UserService,
@@ -20,7 +21,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
     this.getUserInfo();
     this.getStatisticsCount();
-    this.getCollectionsItemCount();
+    this.getCollectionsTypeCount();
+    this.getItemTypeCount();
   }
 
   getUserInfo() {
@@ -42,8 +44,8 @@ export class DashboardComponent implements OnInit {
       })
   }
 
-  getCollectionsItemCount() {
-    this.statsService.getCollectionsItemCount()
+  getCollectionsTypeCount() {
+    this.statsService.getCollectionsTypeCount()
       .subscribe((res: any) => {
         this.typesGraphData = res.map((type) => {
           return new BarGraphModel(
@@ -57,5 +59,20 @@ export class DashboardComponent implements OnInit {
       })
   }
 
+  getItemTypeCount() {
+    this.statsService.getItemsTypeCount()
+      .subscribe((res: any) => {
+        console.log(res);
+        this.itemTypesGraphData = res.map((type) => {
+          return new BarGraphModel(
+            type['description'],
+            type['count'],
+            'Type',
+            'Count');
+        });
+      }, (err) => {
+        console.log(err);
+      })
+  }
 
 }
