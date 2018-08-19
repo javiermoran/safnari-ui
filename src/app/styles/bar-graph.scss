@@ -1,0 +1,27 @@
+app-bar-graph {
+  @extend .col;
+  @extend .col-12;
+  svg {
+    margin-top: 20px;
+    .bargraph-bar {
+      fill: $secondary-color;
+    }
+    .bar-text {
+      fill: white;
+    }
+    .axis-line {
+      stroke: $text-color;
+    }
+    .domain {
+      stroke: transparent;
+    }
+    .tick {
+      line {
+        opacity: 0;
+      }
+      text {
+        fill: $text-color;
+      }
+    }
+  }
+}

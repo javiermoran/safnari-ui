@@ -1,0 +1,44 @@
+body {
+  background-color: $background-color;
+  color: $text-color;
+  font-family: $primary-font;
+}
+
+.square {
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.06);
+  padding: 1rem;
+  text-align: center;
+  border: 1px solid $border-color;
+}
+
+.separator-line {
+  width: 100%;
+  border-bottom: 1px solid $border-color;
+  height: 1px;
+  margin: 0.5rem 0;
+}
+
+.shine {
+  &:after {
+    content: "";
+    position: absolute;
+    top: -110%;
+    left: -210%;
+    width: 200%;
+    height: 200%;
+    opacity: 0;
+    transform: rotate(5deg);
+    background: rgba(255, 255, 255, 0.13);
+    background: linear-gradient( to right, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.13) 77%, rgba(255, 255, 255, 0.5) 92%, rgba(255, 255, 255, 0.0) 100%);
+  }
+  &:hover:after {
+    opacity: 0.6;
+    top: -30%;
+    left: -30%;
+    transition-property: left, top, opacity;
+    transition-duration: 0.4s, 0.4s, 0.15s;
+    transition-timing-function: ease;
+  }
+}

@@ -1,5 +1,44 @@
-<h1>Wellcome {{ username }}</h1>
-
 <div class="container">
-  
+  <div class="row">
+    <h1 class="col-12">Wellcome {{ username }}</h1>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="statistics-count-item-container">
+      <div class="statistics-count-item">
+        <div class="statistics-count-number">
+          {{ counts.collections }}
+        </div>
+        <div class="statistics-label">Collections</div>
+      </div>
+    </div>
+    <div class="statistics-count-item-container">
+      <div class="statistics-count-item">
+        <div class="statistics-count-number">
+          {{ counts.items }}
+        </div>
+        <div class="statistics-label">Items</div>
+      </div>
+    </div>
+    <div class="statistics-count-item-container">
+        <div class="statistics-count-item">
+          <div class="statistics-count-number">
+            {{ typesGraphData.length }}
+          </div>
+          <div class="statistics-label">Types</div>
+        </div>
+      </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="separator-line"></div>
+    </div>
+  </div>
+
+  <div class="row">
+      <h3 class="col-12 mb-2 mt-2">Collections</h3>
+    <app-bar-graph id="typesGraph" [data]="typesGraphData"></app-bar-graph>
+  </div>
 </div>

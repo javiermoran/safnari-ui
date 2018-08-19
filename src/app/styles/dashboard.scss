@@ -1,0 +1,21 @@
+.statistics-count-item-container {
+  padding: 1rem;
+  @extend .col;
+  @extend .col-sm-4;
+  @extend .col-12;
+  .statistics-count-item {
+    @extend .square;
+    .statistics-count-number {
+      cursor: default;
+      color: $secondary-color;
+      font-family: $primary-font;
+      font-size: 6rem;
+      line-height: 6rem;
+      border-radius: 4px;
+    }
+    .statistics-label {
+      cursor: default;
+      color: $text2-color;
+    }
+  }
+}

@@ -13,6 +13,7 @@ export class CollectionsComponent implements OnInit, OnDestroy {
   filteredCollections: Collection[] = [];
   total: Number;
   addingCollection: Boolean = false;
+  searchActive: Boolean = false;
   searchParam: string;
 
   constructor(private collectionsService: CollectionsService) {}
@@ -56,5 +57,9 @@ export class CollectionsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.collectionAdded.unsubscribe();
+  }
+
+  isInputActive() {
+    return this.searchParam || this.searchActive;
   }
 }

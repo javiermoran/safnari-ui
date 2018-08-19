@@ -6,11 +6,13 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { RoutesModule } from './routes.module';
+import { GraphsModule } from './graphs/graphs.module';
 
 import { UserService } from './services/user.service';
 import { CollectionsService } from './services/collections.service';
 import { TypesService } from './services/types.service';
 import { ItemsService } from './services/items.service';
+import { StatisticsService } from './services/statistics.service';
 
 import { AppComponent } from './app.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -46,7 +48,8 @@ import { UnauthorizedInterceptor } from './interceptors/unauthorized.interceptor
     FormsModule,
     RoutesModule,
     NgbModule,
-    HttpClientModule
+    HttpClientModule,
+    GraphsModule
   ],
   providers: [
     {
@@ -62,7 +65,8 @@ import { UnauthorizedInterceptor } from './interceptors/unauthorized.interceptor
     TypesService,
     UserService,
     CollectionsService,
-    ItemsService
+    ItemsService,
+    StatisticsService
   ],
   bootstrap: [AppComponent]
 })

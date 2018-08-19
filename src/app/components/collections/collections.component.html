@@ -4,13 +4,13 @@
   <div class="row">
     <div class="form-group col">
       <div class="input-group mb-1">
-        <div class="search-input" [ngClass]="{active: searchParam}">
-          <i class="fas fa-search" [ngClass]="{active: searchParam}"></i>
+        <div class="search-input" [ngClass]="{active: isInputActive()}">
+          <i class="fas fa-search" [ngClass]="{active: isInputActive()}"></i>
           <span class="search-text">
-            | {{ total }} collection
-            <span *ngIf="total > 1">s</span>
+            | {{ total }} collection<span *ngIf="total > 1">s</span>
           </span>
-          <input type="text" [ngClass]="{active: searchParam}"
+          <input type="text" [ngClass]="{active: isInputActive()}" 
+              (focus)="searchActive = true" (blur)="searchActive = false"
               [(ngModel)]="searchParam" 
               placeholder="Search in your collections..."
               (keyup)="filterCollections($event)">
