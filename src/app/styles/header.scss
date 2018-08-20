@@ -1,27 +1,59 @@
 header {
-  padding: 1rem;
   background-color: $primary-color;
-
-  a, span {
+  overflow-x: hidden;
+  .nav-link {
     color: $background-color;
     cursor: pointer;
-
+    padding: 0 1rem;
     &:hover {
-      color: $background-color;
       text-decoration: underline;
     }
   }
-
   .logo {
+    cursor: default;
     font-family: $logo-font;
     color: $background-color;
     font-size: 1.6rem;
     font-weight: bold;
-    transition: all 0.1s ease-out;
-    cursor: pointer;
-
-    &:hover {
-      transform: rotate(-2deg) scale(1.1);
-    }
   }
+  .spacer { color: $background-color; }
+  li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+  }
+}
+
+.animated-nav {
+  min-height: 3rem;
+  li:not(.logo):not(.spacer) {
+    transition: width 0.5s;
+    cursor: pointer;
+    .show-active {
+      display: none;
+      overflow: hidden;
+    }
+    i { color: $background-color; }
+    &:hover,
+    &.active {
+      background-color: $primary-dark-color;
+      i { color: $background-color; }
+    }
+    &.active {
+      span { text-decoration: none }
+      .show-active {
+        color: $background-color;
+        display: inline-block;
+        animation: widthOpacity 0.4s ease-in;
+      }
+    }
+    &:focus { outline: none; }
+  }
+}
+
+@keyframes widthOpacity {
+  0% { width: 0; opacity: 0; }
+  80% { width: 100%; opacity: 0; }
+  100% { opacity: 1; }
 }

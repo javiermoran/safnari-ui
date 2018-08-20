@@ -1,10 +1,18 @@
 <header class="contianer">
   <div class="row">
     <div class="col">
-      <ul class="nav">
-        <li class="logo" routerLink="/">Safnari</li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/collections">Collections</a>
+      <ul class="nav animated-nav">
+        <li class="logo" routerLink="/">
+          Sf
+        </li>
+        <li class="spacer">|</li>
+        <li class="nav-item" routerLink="/dashboard" routerLinkActive="active">
+          <i class="fas fa-chart-line"></i>
+          <span class="show-active ml-1">Dashboard</span>
+        </li>
+        <li class="nav-item" routerLink="/collections" routerLinkActive="active">
+          <i class="fas fa-columns"></i>
+          <span class="show-active ml-1">Collections</span>
         </li>
       </ul>
     </div>
@@ -25,3 +33,6 @@
     </ul>
   </div>
 </header>
+<nav class="subheader">
+
+</nav>

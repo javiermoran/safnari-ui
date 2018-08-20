@@ -3,7 +3,7 @@ import { HttpModule } from '@angular/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { RoutesModule } from './routes.module';
 import { GraphsModule } from './graphs/graphs.module';
@@ -13,6 +13,7 @@ import { CollectionsService } from './services/collections.service';
 import { TypesService } from './services/types.service';
 import { ItemsService } from './services/items.service';
 import { StatisticsService } from './services/statistics.service';
+import { AlertsService } from './services/alerts.service';
 
 import { AppComponent } from './app.component';
 import { SignupComponent } from './components/signup/signup.component';
@@ -47,7 +48,7 @@ import { UnauthorizedInterceptor } from './interceptors/unauthorized.interceptor
     ReactiveFormsModule,
     FormsModule,
     RoutesModule,
-    NgbModule,
+    NgbAlertModule.forRoot(),
     HttpClientModule,
     GraphsModule
   ],
@@ -66,7 +67,8 @@ import { UnauthorizedInterceptor } from './interceptors/unauthorized.interceptor
     UserService,
     CollectionsService,
     ItemsService,
-    StatisticsService
+    StatisticsService,
+    AlertsService
   ],
   bootstrap: [AppComponent]
 })

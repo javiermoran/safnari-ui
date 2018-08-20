@@ -1,5 +1,23 @@
 
-<app-header></app-header>
-<div class="container">
-  <router-outlet></router-outlet>
+<div class="app-content">
+  <app-header></app-header>
+
+  <ng-container *ngFor="let alert of alerts">
+    <ngb-alert [type]="alert.type" *ngIf="!staticAlertClosed" (close)="staticAlertClosed = true">
+      {{ alert.text }}
+    </ngb-alert>
+  </ng-container>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
 </div>
+
+<footer>
+  <div class="container">
+    <img src="assets/jm2.png">
+    <i class="fab fa-sass float-right ml-2"></i>
+    <i class="fab fa-angular float-right ml-2"></i>
+    <i class="fab fa-node-js float-right ml-2"></i>
+  </div>
+</footer>

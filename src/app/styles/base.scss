@@ -1,7 +1,20 @@
+body, html, app-root {
+  height: 100%;
+}
+
 body {
   background-color: $background-color;
   color: $text-color;
   font-family: $primary-font;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+}
+
+.app-content {
+  flex: 1 0 auto;
 }
 
 .square {
@@ -13,11 +26,15 @@ body {
   border: 1px solid $border-color;
 }
 
+.clickable {
+  cursor: pointer;
+}
+
 .separator-line {
   width: 100%;
   border-bottom: 1px solid $border-color;
   height: 1px;
-  margin: 0.5rem 0;
+  margin: 1rem 0;
 }
 
 .shine {

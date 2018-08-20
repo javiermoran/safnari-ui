@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/dashboard']);
     }).catch((e) => {
       if(e.status === 404) {
-        this.message = 'User or email not found';
+        this.message = 'User or email not correct';
         this.error = true;
       }
     })

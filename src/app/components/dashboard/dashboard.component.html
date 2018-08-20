@@ -6,7 +6,7 @@
 <div class="container">
   <div class="row">
     <div class="statistics-count-item-container">
-      <div class="statistics-count-item">
+      <div class="statistics-count-item clickable" routerLink="/collections">
         <div class="statistics-count-number" [ngClass]="{appear: counts.collections}">
           {{ counts.collections }}
         </div>
@@ -39,19 +39,19 @@
 
   <div class="row">
     <div class="col-12 col-md-6">
-      <h3 class="col-12 mb-2 mt-2 text-center">Collections</h3>
       <app-bar-graph id="collectionTypesGraph" [data]="typesGraphData"></app-bar-graph>
+      <h3 class="col-12 mb-2 mt-2 text-center">Collections</h3>
     </div>
 
     <div class="col-12 col-md-6">
-      <h3 class="col-12 mb-2 mt-2 text-center">Items</h3>
       <app-bar-graph id="itemTypesGraph" [data]="itemTypesGraphData"></app-bar-graph>
+      <h3 class="col-12 mb-2 mt-2 text-center">Items</h3>
     </div>
   </div>
 
-  <div class="row">
+  <!-- <div class="row">
     <div class="col-12">
       <div class="separator-line"></div>
     </div>
-  </div>
+  </div> -->
 </div>

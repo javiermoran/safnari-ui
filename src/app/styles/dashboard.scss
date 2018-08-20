@@ -20,5 +20,17 @@
       cursor: default;
       color: $text2-color;
     }
+    &.clickable {
+      .statistics-label, .statistics-count-number {
+        cursor: pointer;
+      }
+
+      &:hover {
+        .statistics-label {
+          text-decoration: underline;
+          color: $text3-color;
+        }
+      }
+    }
   }
 }

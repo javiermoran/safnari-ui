@@ -1,7 +1,7 @@
 <router-outlet>
   <h1>Collections</h1>
 
-  <div class="row">
+  <div class="row" *ngIf="!addingCollection">
     <div class="form-group col">
       <div class="input-group mb-1">
         <div class="search-input" [ngClass]="{active: isInputActive()}">
@@ -15,24 +15,20 @@
               placeholder="Search in your collections..."
               (keyup)="filterCollections($event)">
         </div>        
+        <button class="btn-add-new">
+          <i class="fas fa-plus"></i>
+          <span class="ml-1" (click)="toggleForm()">Add new</span>
+        </button>
       </div>
     </div>
   </div>
 
   <ng-container *ngIf="addingCollection">
+    <h3 class="mt-3">New collection</h3>
     <app-coll-form (cancel)="cancel($event)"></app-coll-form>
   </ng-container>
 
   <div class="row" *ngIf="!addingCollection">
-    <ng-container *ngIf="!addingCollection">
-      <div class="collection-item-container">
-        <div (click)="toggleForm()" class="collection-item">
-          <i class="fas fa-plus"></i>
-          Add new
-        </div>
-      </div>
-    </ng-container>
-    
     <div class="collection-item-container" *ngFor="let collection of filteredCollections">
       <div class="collection-item" routerLink="{{ collection._id }}">
         <i title="{{ collection.type.description }}" class="fas {{ collection.type.icon }} mr-1"></i>
