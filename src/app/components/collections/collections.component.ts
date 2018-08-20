@@ -13,8 +13,6 @@ export class CollectionsComponent implements OnInit, OnDestroy {
   filteredCollections: Collection[] = [];
   total: Number;
   addingCollection: Boolean = false;
-  searchActive: Boolean = false;
-  searchParam: string;
 
   constructor(private collectionsService: CollectionsService) {}
 
@@ -47,11 +45,11 @@ export class CollectionsComponent implements OnInit, OnDestroy {
     this.addingCollection = false;
   }
 
-  filterCollections(event) {
+  filterCollections(searchParam) {
     this.filteredCollections = this.collections.filter(
       (collection) => {
         const name = collection.name.toLowerCase();
-        return name.includes(this.searchParam.toLowerCase());
+        return name.includes(searchParam.toLowerCase());
       });
   }
 
@@ -59,7 +57,5 @@ export class CollectionsComponent implements OnInit, OnDestroy {
     this.collectionAdded.unsubscribe();
   }
 
-  isInputActive() {
-    return this.searchParam || this.searchActive;
-  }
+  
 }

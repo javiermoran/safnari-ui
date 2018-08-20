@@ -9,21 +9,12 @@
 <ng-container *ngIf="!addingItem">
   <div class="container">
     <div class="row">
+      <app-search-bar [name]="'item'" [placeholder]="'Search in ' + collection.name + '...'" [total]="items.length" 
+      (addNew)="toggleForm()" (onKeyUp)="filterItems($event)"></app-search-bar>
+    </div>
 
-      <div class="collection-item-container" (click)="addingItem = !addingItem">
-        <div class="app-item">
-          <div class="item">
-            <div [ngClass]="'item-image ' + collection.type.name"></div>
-            <div class="add-item">
-              <i class="fas fa-plus"></i>
-              Add new
-            </div>
-            &nbsp;
-          </div>
-        </div>
-      </div>
-
-      <div *ngFor="let item of items" class="collection-item-container">
+    <div class="row">
+      <div *ngFor="let item of filteredItems" class="collection-item-container">
         <app-item [item]="item"></app-item>
       </div>
     </div>

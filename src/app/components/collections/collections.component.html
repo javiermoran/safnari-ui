@@ -2,25 +2,8 @@
   <h1>Collections</h1>
 
   <div class="row" *ngIf="!addingCollection">
-    <div class="form-group col">
-      <div class="input-group mb-1">
-        <div class="search-input" [ngClass]="{active: isInputActive()}">
-          <i class="fas fa-search" [ngClass]="{active: isInputActive()}"></i>
-          <span class="search-text">
-            | {{ total }} collection<span *ngIf="total > 1">s</span>
-          </span>
-          <input type="text" [ngClass]="{active: isInputActive()}" 
-              (focus)="searchActive = true" (blur)="searchActive = false"
-              [(ngModel)]="searchParam" 
-              placeholder="Search in your collections..."
-              (keyup)="filterCollections($event)">
-        </div>        
-        <button class="btn-add-new">
-          <i class="fas fa-plus"></i>
-          <span class="ml-1" (click)="toggleForm()">Add new</span>
-        </button>
-      </div>
-    </div>
+    <app-search-bar [name]="'collection'" [placeholder]="'Search in your collections...'" [total]="total" 
+                    (addNew)="toggleForm()" (onKeyUp)="filterCollections($event)"></app-search-bar>
   </div>
 
   <ng-container *ngIf="addingCollection">

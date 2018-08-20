@@ -11,6 +11,7 @@ import { ItemsService } from "../../../services/items.service";
 export class CollectionDetailsComponent implements OnInit, OnDestroy {
   collection: any = {};
   items: any = [];
+  filteredItems: any = [];
   addingItem: boolean = false;
   itemAdded: Subscription;
   id: string;
@@ -51,9 +52,25 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
     this.itemsService.getItems(collection)
       .subscribe((res) => {
         this.items = res['data'];
+        this.filterItems('');
       }, (err) => {
         console.log(err);
       })
+  }
+
+  toggleForm() {
+    this.addingItem = !this.addingItem;
+  }
+
+  filterItems(param) {
+    this.filteredItems = this.items.filter(
+      (item) => {
+        let search = item.title.toLowerCase();
+        search += item.number;
+        search += item.publisher.toLowerCase();
+
+        return search.includes(param.toLowerCase());
+      });
   }
 
   cancel() {

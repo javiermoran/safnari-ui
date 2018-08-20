@@ -25,9 +25,11 @@ import { CollectionDetailsComponent } from './components/collections/collection-
 import { HeaderComponent } from './components/header/header.component';
 import { ItemComponent } from './components/items/item.component';
 import { ItemFormComponent } from './components/items/item-form/itemForm.component';
+import { SearchBarComponent } from './components/search/searchBar.component';
 
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { UnauthorizedInterceptor } from './interceptors/unauthorized.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { UnauthorizedInterceptor } from './interceptors/unauthorized.interceptor
     CollectionDetailsComponent,
     HeaderComponent,
     ItemComponent,
-    ItemFormComponent
+    ItemFormComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,

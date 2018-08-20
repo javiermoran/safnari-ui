@@ -5,17 +5,13 @@
   @extend .col-6;
   padding: 0.2rem;
   .collection-item {
-    background-color: white;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.06);
-    border-radius: 4px;
+    @extend .square;
     transition: all 0.2s;
     min-height: 100px;
     text-align: center;
     line-height: 1rem;
-    width: 100%;
     padding: 0.2rem;
     display: block;
-    @extend .border;
     i {
       display: block;
       width: 100%;

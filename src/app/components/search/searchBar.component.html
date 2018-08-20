@@ -1,0 +1,20 @@
+<div class="form-group col">
+  <div class="input-group mb-1">
+    <div class="search-input" [ngClass]="{active: isInputActive()}">
+      <i class="fas fa-search" [ngClass]="{active: isInputActive()}"></i>
+      <span class="search-text">
+        | {{ total }} {{name}}<span *ngIf="total > 1">s</span>
+      </span>
+      <input type="text" [ngClass]="{active: isInputActive()}" 
+          (focus)="searchActive = true" (blur)="searchActive = false"
+          [(ngModel)]="searchParam" 
+          [placeholder]="placeholder"
+          (keyup)="searchKeyup($event)">
+    </div>        
+    <button class="btn-add-new">
+      <i class="fas fa-plus"></i>
+      <span class="ml-1" (click)="addNewClick()">New {{name}}</span>
+    </button>
+  </div>
+  <div class="separator-line mt-1"></div>
+</div>
