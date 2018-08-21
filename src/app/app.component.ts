@@ -17,10 +17,14 @@ export class AppComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.alertsChanged = this.alertsService.alertsChanged
       .subscribe((alerts) => {
-        this.alerts = alerts;
+        this.alerts = alerts.slice();
       }, (err) => {
         console.log(err);
       });
+  }
+
+  closeAlert(id) {
+    this.alertsService.removeAlert(id);
   }
 
   ngOnDestroy() {

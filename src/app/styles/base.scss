@@ -17,6 +17,14 @@ app-root {
   flex: 1 0 auto;
 }
 
+h1 {
+  height: 50px;
+}
+
+h1:not(.editable) {
+  cursor: default;
+}
+
 .square {
   width: 100%;
   background-color: white;
@@ -34,6 +42,15 @@ app-root {
   width: 100%;
   border-bottom: 1px solid $border-color;
   height: 1px;
+}
+
+.title-input {
+  background-color: transparent;
+  border: none;
+  transition: all 0.5s;
+  &:focus {
+    outline: none;
+  }
 }
 
 .shine {
@@ -67,5 +84,15 @@ app-root {
   100% {
       transform: scale(1.0);
       opacity: 1;
+  }
+}
+
+.no-data {
+  width: 100%;
+  color: $text2-color;
+  font-size: 0.9rem;
+  span {
+    cursor: pointer;
+    color: $secondary-color;
   }
 }

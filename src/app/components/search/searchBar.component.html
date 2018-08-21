@@ -9,7 +9,7 @@
           (focus)="searchActive = true" (blur)="searchActive = false"
           [(ngModel)]="searchParam" 
           [placeholder]="placeholder"
-          (keyup)="searchKeyup($event)">
+          (keyup)="searchKeyup()">
     </div>        
     <button class="btn-add-new">
       <i class="fas fa-plus"></i>

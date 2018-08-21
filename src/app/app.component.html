@@ -3,7 +3,7 @@
   <app-header></app-header>
 
   <ng-container *ngFor="let alert of alerts">
-    <ngb-alert [type]="alert.type" *ngIf="!staticAlertClosed" (close)="staticAlertClosed = true">
+    <ngb-alert [type]="alert.type" *ngIf="!staticAlertClosed" (close)="closeAlert(alert.id)">
       {{ alert.text }}
     </ngb-alert>
   </ng-container>

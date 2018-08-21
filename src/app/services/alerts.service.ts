@@ -11,8 +11,8 @@ export class AlertsService {
   }
 
   removeAlert(id) {
-    const index = this.alerts.findIndex((alert) => alert.id == id);
-    this.alerts.splice(index, 0);
+    const index = this.alerts.findIndex((alert) => alert.id === id);
+    this.alerts.splice(index, 1);
     this.alertsChanged.next(this.alerts);
   }
 }

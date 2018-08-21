@@ -1,25 +1,31 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Renderer } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { CollectionsService } from "../../../services/collections.service";
 import { Subscription } from "rxjs";
 import { ItemsService } from "../../../services/items.service";
+import { AlertsService } from "../../../services/alerts.service";
+import { AlertModel } from "../../../models/alert.model";
 
 @Component({
   selector: 'app-collection-details',
   templateUrl: './collectionDetails.component.html'
 })
 export class CollectionDetailsComponent implements OnInit, OnDestroy {
+  @ViewChild('editInput') inputEl: ElementRef;
   collection: any = {};
   items: any = [];
   filteredItems: any = [];
   addingItem: boolean = false;
+  editingCollection: boolean = false;
   itemAdded: Subscription;
   id: string;
+  collectionName: string;
 
   constructor(
     private route: ActivatedRoute,
     private collService: CollectionsService,
-    private itemsService: ItemsService
+    private itemsService: ItemsService,
+    private alertsService: AlertsService
   ) {}
 
   ngOnInit() {
@@ -43,6 +49,7 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
       .subscribe((res) => {
         this.collection = res;
         this.addingItem = false;
+        this.collectionName = this.collection.name;
       }, (error) => {
         console.log(error);
       })
@@ -71,6 +78,32 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
 
         return search.includes(param.toLowerCase());
       });
+  }
+
+  saveName() {
+    this.editingCollection = !this.editingCollection;
+    
+
+    if(this.collection.name != this.collectionName) {
+      const name = this.collection.name = this.collectionName;
+      const id = this.collection._id
+      this.collService.updateCollection(id, { name })
+        .subscribe((result) => {
+          const message = `Collection name changed to ${name}`;
+          const alert = new AlertModel(message, 'success');
+          this.alertsService.addAlert(alert);
+        }, (e) => {
+          console.log(e);
+        })
+    }
+  }
+
+  showEditing() {
+    this.editingCollection = true;
+    
+    setTimeout(() => {
+      this.inputEl.nativeElement.focus();
+    }, 0);
   }
 
   cancel() {

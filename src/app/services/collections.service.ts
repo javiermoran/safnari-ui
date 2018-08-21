@@ -22,4 +22,8 @@ export class CollectionsService {
   saveCollection(collection: Collection) {
     return this.httpClient.post(this.API_URI, collection);
   }
+
+  updateCollection(id: String, col: { name: string}) {
+    return this.httpClient.patch(`${this.API_URI}/${id}`, col);
+  }
 }

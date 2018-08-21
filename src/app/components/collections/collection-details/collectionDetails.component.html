@@ -1,8 +1,16 @@
-<h1>{{ collection.name }} collection</h1>
+<h1 class="editable">
+  <span (click)="showEditing()" *ngIf="!editingCollection">
+    {{ collection.name }} collection
+  </span>
+  <input *ngIf="editingCollection" class="title-input" [(ngModel)]="collectionName" 
+        (blur)="saveName()" #editInput />
+</h1>
 
 <ng-container *ngIf="addingItem">
+  <h3>New {{ collection.type.description }}</h3>
   <app-item-form [collection]="collection._id" 
                  [type]="collection.type._id" 
+                 [typeName]="collection.type.name"
                  (cancel)="cancel($event)">
   </app-item-form>
 </ng-container>
@@ -16,6 +24,12 @@
     <div class="row">
       <div *ngFor="let item of filteredItems" class="collection-item-container">
         <app-item [item]="item"></app-item>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="no-data" *ngIf="items.length === 0">
+        No items found in the collection, add a
+        <span (click)="toggleForm()" class="no-data-link">new {{ collection.type.description }}</span>
       </div>
     </div>
   </div>

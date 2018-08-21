@@ -1,6 +1,7 @@
 app-item, .app-item {
   .item {
-    @extend .collection-item;
+    @extend .square;
+    padding: 0;
     height: auto;
     padding-bottom: 0.5rem;
     .add-item {
@@ -12,8 +13,6 @@ app-item, .app-item {
     }
   }
   .item-image {
-    border-top-right-radius: 4px;
-    border-top-left-radius: 4px;
     background-size: cover;
     margin-bottom: 0.5rem;
     &.cbook {
@@ -22,5 +21,12 @@ app-item, .app-item {
     &.record, &.bgame {
       padding-top: 100%;
     }
+  }
+}
+
+app-item-form {
+  .thumb {
+    max-width: 100px;
+    max-height: 100px;
   }
 }

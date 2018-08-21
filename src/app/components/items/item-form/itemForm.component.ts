@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ItemsService } from "../../../services/items.service";
 import { Item } from "../../../models/item.model";
@@ -7,12 +7,27 @@ import { Item } from "../../../models/item.model";
   selector: 'app-item-form',
   templateUrl: './itemForm.component.html'
 })
-export class ItemFormComponent implements OnInit {
+export class ItemFormComponent implements OnInit, OnChanges {
   @Input() type: string;
   @Input() collection: string;
+  @Input() typeName: string;
   @Output() cancel = new EventEmitter();
   itemForm:FormGroup;
-  image: string;
+  image: any;
+  form: any = {
+    title: true,
+    number: true,
+    publisher: true,
+    artist: true,
+    format: true
+  };
+  formTypes: any = {
+    title: 'book|cbook|bgame|toy|vgame|record|movie',
+    number: 'cbook',
+    publisher: 'book|cbook|bgame|toy|vgame|record|movie',
+    artist: 'book|cbook|record|movie',
+    format: 'book|cbook|vgame|record|movie'
+  };
 
   constructor(private itemService: ItemsService) {}
 
@@ -64,5 +79,18 @@ export class ItemFormComponent implements OnInit {
 
   formCancel() {
     this.cancel.emit();
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if(changes.typeName.currentValue) {
+      const type = changes.typeName.currentValue;
+      const types = this.formTypes;
+      
+      this.form.title = types.title.indexOf(type) !== -1;
+      this.form.number = types.number.indexOf(type) !== -1;
+      this.form.publisher = types.publisher.indexOf(type) !== -1;
+      this.form.artist = types.artist.indexOf(type) !== -1;
+      this.form.format = types.format.indexOf(type) !== -1;
+    }
   }
 }
