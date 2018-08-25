@@ -11,8 +11,9 @@ export class CollectionsComponent implements OnInit, OnDestroy {
   private collectionAdded: Subscription;
   collections: Collection[] = [];
   filteredCollections: Collection[] = [];
-  total: Number;
-  addingCollection: Boolean = false;
+  total: number;
+  addingCollection: boolean = false;
+  loading: boolean = true;
 
   constructor(private collectionsService: CollectionsService) {}
 
@@ -27,11 +28,13 @@ export class CollectionsComponent implements OnInit, OnDestroy {
   }
 
   getCollections() {
+    this.loading = true;
     this.collectionsService.getCollections()
       .subscribe((response) => {
         this.collections = response['data'];
         this.filteredCollections = this.collections;
         this.total = response['total'];
+        this.loading = false;
       }, (error) => {
         console.log(error);
       });

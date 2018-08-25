@@ -1,6 +1,7 @@
 
 <div class="app-content">
   <app-header></app-header>
+  <ngx-loading-bar [includeSpinner]="false" [fixed]="false"></ngx-loading-bar>
 
   <ng-container *ngFor="let alert of alerts">
     <ngb-alert [type]="alert.type" *ngIf="!staticAlertClosed" (close)="closeAlert(alert.id)">

@@ -1,0 +1,56 @@
+<div class="item">
+  <div class="item-scene">
+    <div class="item-card" [ngClass]="{flipped: isFlipped}">
+      <div class="item-card-face item-face-a" [ngStyle]="cardStyle">
+        <div [class]="'item-image ' + item.type.name" [ngStyle]="backgroundImage(item.picture)"
+            (click)="toggleDetails()" [ngClass]="{translated: isTranslated}"></div>
+          <div class="card-bottom">
+            <ng-container *ngIf="!isTranslated">
+              <div class="item-title">{{item.title}}</div>
+              <div class="small-label">{{item.publisher}}</div>
+            </ng-container>
+            <div class="item-btn-area" *ngIf="isTranslated">
+              <button class="btn btn-primary col-12">Edit</button>
+            </div>
+          </div>
+      </div>
+      <div class="item-card-face item-face-b">
+        <div class="item-content">
+          
+          <div class="item-content-inner mt-4">
+            <div *ngIf="item.title">
+              <label>Title:</label>
+              <span class="item-lbl-text">
+                {{ item.title }}
+              </span>
+            </div>
+            <div *ngIf="item.number">
+              <label>Number:</label>
+              <span class="item-lbl-text">
+                {{ item.number }}
+              </span>
+            </div>
+            <div *ngIf="item.artist">
+              <label>Artist:</label>
+              <div class="item-lbl-text">
+                {{ item.artist }}
+              </div>
+            </div>
+            <div *ngIf="item.publisher">
+              <label>Publisher:</label>
+              <span class="item-lbl-text">
+                {{ item.publisher }}
+              </span>
+            </div>
+            <div *ngIf="item.format">
+              <label>Format:</label>
+              <span class="item-lbl-text">
+                {{ item.format }}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

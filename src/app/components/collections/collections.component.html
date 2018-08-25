@@ -1,22 +1,38 @@
 <router-outlet>
   <h1>Collections</h1>
 
-  <div class="row" *ngIf="!addingCollection">
+  <div class="row" *ngIf="!addingCollection && !loading">
     <app-search-bar [name]="'collection'" [placeholder]="'Search in your collections...'" [total]="total" 
-                    (addNew)="toggleForm()" (onKeyUp)="filterCollections($event)"></app-search-bar>
+      (addNew)="toggleForm()" (onKeyUp)="filterCollections($event)"></app-search-bar>
   </div>
 
   <ng-container *ngIf="addingCollection">
-    <h3 class="mt-3">New collection</h3>
-    <app-coll-form (cancel)="cancel($event)"></app-coll-form>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h3 class="mt-3">New collection</h3>
+        <app-coll-form (cancel)="cancel($event)"></app-coll-form>
+      </div>
+    </div>
   </ng-container>
 
-  <div class="row" *ngIf="!addingCollection">
-    <div class="collection-item-container" *ngFor="let collection of filteredCollections">
+  <app-loading *ngIf="loading"></app-loading>
+
+  <div class="row" *ngIf="!addingCollection && !loading">
+    <div class="collection-item-container grid-view" *ngFor="let collection of filteredCollections">
       <div class="collection-item" routerLink="{{ collection._id }}">
         <i title="{{ collection.type.description }}" class="fas {{ collection.type.icon }} mr-1"></i>
         {{ collection.name }}
       </div>
     </div>
   </div>
+
+  <div class="row text-center" *ngIf="!addingCollection && !loading">
+    <div class="no-data" *ngIf="filteredCollections.length === 0">
+      <div>No collections found</div>
+      <span (click)="toggleForm()" class="no-data-link">
+        Add new
+      </span>
+    </div>
+  </div>
+
 </router-outlet>

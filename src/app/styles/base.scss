@@ -18,7 +18,11 @@ app-root {
 }
 
 h1 {
-  height: 50px;
+  color: $text3-color;
+  
+  font-weight: 500;
+  font-size: 2rem;
+  font-family: $third-font;
 }
 
 h1:not(.editable) {
@@ -94,5 +98,10 @@ h1:not(.editable) {
   span {
     cursor: pointer;
     color: $secondary-color;
+    &.no-data-link {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 }

@@ -1,0 +1,41 @@
+app-loading {
+  h3 {
+    position: relative;
+    overflow: hidden;
+    margin: 4rem 0;
+    .text-container {
+      height: 33px;
+      display: inline-block;
+      position: relative;
+      overflow: hidden;
+      width: 200px;
+      .text {
+        width: 100%;
+        position: absolute;
+        font-weight: 400;
+        text-align: center;
+        left: 0;
+      }
+      .bracket {
+        position: absolute;
+        color: $primary-color;
+        font-family: $secondary-font2;
+        color: $primary-color;
+        &.dark  { color: $secondary-color; }
+        &.left  { left: 0; }
+        &.right { right: 0; }
+      }
+    }
+  }
+  @keyframes loading {
+    0%   { opacity: 1; top: -100%;  }
+    20%  { opacity: 1; top: 0; }
+    50%  { opacity: 0.5; }
+    80%  { opacity: 0; }
+    100% { opacity: 0; }
+  }
+  .loading {
+    transform-origin: 50% 50%;
+    animation: loading 2s linear infinite;
+  }
+}

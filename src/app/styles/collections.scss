@@ -1,36 +1,39 @@
 .collection-item-container {
-  @extend .col;
-  @extend .col-md-2;
-  @extend .col-sm-6;
-  @extend .col-6;
-  padding: 0.2rem;
-  .collection-item {
-    @extend .square;
-    transition: all 0.2s;
-    min-height: 100px;
-    text-align: center;
-    line-height: 1rem;
+  &.grid-view {
+    @extend .col;
+    @extend .col-lg-2;
+    @extend .col-md-3;
+    @extend .col-sm-6;
+    @extend .col-6;
     padding: 0.2rem;
-    display: block;
-    i {
+    .collection-item {
+      @extend .square;
+      transition: all 0.2s;
+      min-height: 100px;
+      text-align: center;
+      line-height: 1rem;
+      padding: 0.2rem;
       display: block;
-      width: 100%;
-      padding: 0.5rem;
-      height: 50%;
-      &:before {
-        line-height: 36px;
-      }
-    }
-    &:hover {
-      cursor: pointer;
-      background-color: $secondary-color;
-      color: $background-color;
       i {
-        color: $background-color;
+        display: block;
+        width: 100%;
+        padding: 0.5rem;
+        height: 50%;
+        &:before {
+          line-height: 36px;
+        }
       }
-    }
-    i {
-      color: $text3-color;
+      &:hover {
+        cursor: pointer;
+        background-color: $secondary-color;
+        color: $background-color;
+        i {
+          color: $background-color;
+        }
+      }
+      i {
+        color: $text3-color;
+      }
     }
   }
 }

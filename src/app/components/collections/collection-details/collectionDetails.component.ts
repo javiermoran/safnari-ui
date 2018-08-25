@@ -12,6 +12,7 @@ import { AlertModel } from "../../../models/alert.model";
 })
 export class CollectionDetailsComponent implements OnInit, OnDestroy {
   @ViewChild('editInput') inputEl: ElementRef;
+  loading: { info: boolean, items: boolean };
   collection: any = {};
   items: any = [];
   filteredItems: any = [];
@@ -20,6 +21,7 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
   itemAdded: Subscription;
   id: string;
   collectionName: string;
+  
 
   constructor(
     private route: ActivatedRoute,
@@ -29,6 +31,7 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.loading = { info: true, items: true };
     this.collection['type'] = {}
 
     this.route.params.subscribe((params) => {
@@ -45,22 +48,28 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
   }
 
   getCollectionInfo(id: String) {
+    this.loading.info = true;
     this.collService.getCollection(id)
       .subscribe((res) => {
         this.collection = res;
         this.addingItem = false;
         this.collectionName = this.collection.name;
+        this.loading.info = false;
       }, (error) => {
         console.log(error);
+        this.loading.info = false;
       })
   }
 
   getItems(collection: string) {
+    this.loading.items = true;
     this.itemsService.getItems(collection)
       .subscribe((res) => {
         this.items = res['data'];
         this.filterItems('');
+        this.loading.items = false;
       }, (err) => {
+        this.loading.items = false;
         console.log(err);
       })
   }
@@ -104,6 +113,10 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
     setTimeout(() => {
       this.inputEl.nativeElement.focus();
     }, 0);
+  }
+
+  isLoading() {
+    return this.loading.info || this.loading.items;
   }
 
   cancel() {

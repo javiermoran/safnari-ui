@@ -8,9 +8,24 @@ import { ignoreElements } from "rxjs/operators";
 })
 export class ItemComponent implements OnInit {
   @Input() item;
+  isFlipped: boolean = false;
+  isTranslated: boolean = false;
+  cardStyle;
 
   constructor() {}
 
   ngOnInit() {}
 
+  backgroundImage(url) {
+    return { 'background-image': `url(${url})` };
+  }
+
+  toggleFlipped() {
+    this.isFlipped = !this.isFlipped;
+  }
+
+  toggleDetails() {
+    this.isTranslated = !this.isTranslated;
+    this.cardStyle = this.isTranslated ? {"background": "transparent"} : {};
+  }
 }

@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Amatic+SC:400,700|Slabo+13px|Yrsa:300,400,500,600,700');
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,300i,400,400i,600,600i,700,700i');
 @import url('https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister');
+@import url('https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:100,300,400,500,700,800,900|Titillium+Web');
 
 @import './vars.scss';
 @import './overrides.scss';
@@ -12,3 +13,5 @@
 @import './dashboard';
 @import './search-input.scss';
 @import './bar-graph.scss';
+@import './loading-bar.scss';
+@import './loading.scss';
