@@ -1,0 +1,25 @@
+app-pct-graph {
+  display: block;
+  width: 100%;
+  padding: 2rem;
+  .pct-text {
+    fill: $background-color;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  .arc {
+    .pct-graph-arc {
+      transition: opacity 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
+    }
+    &.underlighted {
+      .pct-graph-arc {
+        opacity: 0.7;
+      }
+    }
+    &.highlighted {
+      .pct-graph-arc {
+        opacity: 1;
+      }
+    }
+  }
+}

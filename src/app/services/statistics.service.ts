@@ -19,4 +19,8 @@ export class StatisticsService {
   getItemsTypeCount() {
     return this.httpClient.get(`${this.API_URI}/items/types`);
   }
+
+  getItemsCollectionPct() {
+    return this.httpClient.get(`${this.API_URI}/collections/items`);
+  }
 }

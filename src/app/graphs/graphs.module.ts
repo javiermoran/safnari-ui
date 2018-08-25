@@ -1,13 +1,16 @@
 import { NgModule } from "@angular/core";
 
 import { BarGraphComponent } from './bar/barGraph.component';
+import { PctGraphComponent } from './pct/pctGraph.component';
 
 @NgModule({
   declarations: [
-    BarGraphComponent
+    BarGraphComponent,
+    PctGraphComponent
   ],
   exports: [
-    BarGraphComponent
+    BarGraphComponent,
+    PctGraphComponent
   ]
 })
 export class GraphsModule {};

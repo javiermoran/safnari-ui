@@ -21,16 +21,39 @@
       color: $text2-color;
     }
     &.clickable {
-      .statistics-label, .statistics-count-number {
+      .statistics-label,
+      .statistics-count-number {
         cursor: pointer;
       }
-
       &:hover {
         .statistics-label {
           text-decoration: underline;
           color: $text3-color;
         }
       }
+    }
+  }
+}
+
+.graph-legends {
+  padding: 2rem 0;
+  .graph-legends-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    .graph-square {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+    }
+    .graph-text {
+      display: inline-block;
+      height: 20px;
+      line-height: 20px;
+      font-size: 1.1rem;
+    }
+    .graph-label {
+      min-width: 140px;
     }
   }
 }

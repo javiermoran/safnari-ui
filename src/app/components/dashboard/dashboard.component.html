@@ -38,13 +38,37 @@
   </div>
 
   <div class="row">
+    <h3 class="col-12">Items by type</h3>
+    <div class="col-12 col-md-6" (click)="isPctGraph = !isPctGraph">  
+      <app-pct-graph id="pct-graph" [data]="itemTypesGraphData" [pct]="isPctGraph"
+        [colorRange]="colorRange"></app-pct-graph>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="graph-legends">
+        <div class="graph-legends-container" id="graph-title-{{i}}" 
+            *ngFor="let ic of itemTypesGraphData.reverse(); let i = index">
+          <span class="graph-square" [ngStyle]="{'background-color': colorRange[i]}"></span>
+          <span class="graph-text graph-label ml-2">{{ ic.label }}</span>
+          <span class="graph-text ml-3">{{ ic.count }} ({{ic.percentage}}%)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="separator-line mt-3 mb-3"></div>
+    </div>
+  </div>
+
+  <div class="row">
     <div class="col-12 col-md-6">
       <app-bar-graph id="collectionTypesGraph" [data]="typesGraphData"></app-bar-graph>
       <h3 class="col-12 mb-2 mt-2 text-center">Collections</h3>
     </div>
 
     <div class="col-12 col-md-6">
-      <app-bar-graph id="itemTypesGraph" [data]="itemTypesGraphData"></app-bar-graph>
+      <app-bar-graph id="itemTypesGraph" [data]="itemsCollectionsData"></app-bar-graph>
       <h3 class="col-12 mb-2 mt-2 text-center">Items</h3>
     </div>
   </div>
