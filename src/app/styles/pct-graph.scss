@@ -1,5 +1,6 @@
 app-pct-graph {
   display: block;
+  position: relative;
   width: 100%;
   padding: 2rem;
   .pct-text {
@@ -9,7 +10,7 @@ app-pct-graph {
   }
   .arc {
     .pct-graph-arc {
-      transition: opacity 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
+      transition: opacity 0.5s ease-out;
     }
     &.underlighted {
       .pct-graph-arc {
@@ -19,6 +20,24 @@ app-pct-graph {
     &.highlighted {
       .pct-graph-arc {
         opacity: 1;
+      }
+    }
+  }
+  .apg-tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 0.5rem;
+    display: none;
+    opacity: 1;
+    width: 115px;
+    transition: opacity 1s linear;    
+    border-radius: 3px;
+    border-bottom-left-radius: 0;
+    &>div {
+      font-size: 0.9rem;
+      color: white;
+      &.apg-tooltip-title {
+        font-weight: bold;
       }
     }
   }

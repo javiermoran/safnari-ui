@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   counts: { collections: number, items: number } = { collections: 0, items: 0 };
   typesGraphData: BarGraphModel[] = [];
   itemTypesGraphData: BarGraphModel[] = [];
+  rItemTypesGraphData: PctGraphModel[] = [];
   itemsCollectionsData: PctGraphModel[] = [];
   isPctGraph: boolean = true;
   colorRange: string[] = ['#2DB8D8', '#1EA0B8', '#1D778C', '#186172', '#10414C'];
@@ -24,7 +25,7 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.rColorRange = this.colorRange.reverse()
+    this.rColorRange = this.colorRange.slice().reverse()
     this.getUserInfo();
     this.getStatisticsCount();
     this.getCollectionsTypeCount();
@@ -80,6 +81,19 @@ export class DashboardComponent implements OnInit {
         }).sort((a, b) => {
           if(a.percentage == b.percentage) return 0;
           return (a.percentage > b.percentage) ? 1 : -1;
+        })
+
+        this.rItemTypesGraphData = res.data.map((type) => {
+          let pct: any = (type.count / res.total ) * 100;
+          pct = Math.round(pct);
+          return new PctGraphModel(
+            type['description'],
+            type['count'],
+            pct
+          );
+        }).sort((a, b) => {
+          if(a.percentage == b.percentage) return 0;
+          return (a.percentage > b.percentage) ? -1 : 1;
         })
       }, (err) => {
         console.log(err);

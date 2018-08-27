@@ -5,7 +5,13 @@ import $ from 'jquery';
 
 @Component({
   selector: 'app-pct-graph',
-  template: '<svg></svg>'
+  template: `<div style="position:relative">
+              <div class="apg-tooltip">
+                <div class="apg-tooltip-title"></div>
+                <div class="apg-tooltip-content"></div>
+              </div>
+              <svg></svg>
+            </div>`
 })
 export class PctGraphComponent implements OnInit, OnChanges, OnDestroy {
   @Input() data: [PctGraphModel];
@@ -84,7 +90,7 @@ export class PctGraphComponent implements OnInit, OnChanges, OnDestroy {
     const config = {
       startRadius: 15,
       thickness: (((this.height) / 2) - 15) / this.data.length,
-      colorRange: this.colorRange,
+      colorRange: this.colorRange.slice(),
       animate: !false
     };
 
@@ -93,6 +99,10 @@ export class PctGraphComponent implements OnInit, OnChanges, OnDestroy {
     const svgGroup = d3.select(`#${this.id}-svg`)
       .on('mouseleave', () => {
         $('.arc').removeClass('highlighted').removeClass('underlighted');
+        $(this.$element.nativeElement)
+          .find('.apg-tooltip')
+          .css('display', 'none')
+          .css('opacity', 0)
       })
       .append('g')
       .attr('transform', `translate(${this.width / 2}, ${this.height / 2})`)
@@ -105,7 +115,7 @@ export class PctGraphComponent implements OnInit, OnChanges, OnDestroy {
       .attr('id', (d, index) => `arc-${this.id}-${index}`)
       .attr('class', 'arc')
       .on('mouseover', (d, index) => {
-        this.arcMouseOver(index);
+        this.arcMouseOver(d, index, config);
       })
   
     const arcPath = g.append('path')
@@ -157,7 +167,27 @@ export class PctGraphComponent implements OnInit, OnChanges, OnDestroy {
       }
   }
 
-  arcMouseOver(index: number) {
+  arcMouseOver(d, index: number, config) {
+    const h = $(this.$element.nativeElement).outerHeight();
+    const tpH = $(this.$element.nativeElement).find('.apg-tooltip').height();
+
+    $(this.$element.nativeElement)
+      .find('.apg-tooltip')
+      .css('display', 'block')
+      .css('opacity', 1)
+      .css('left', '50%')
+      .css('top', () => {
+        return ((h / 2) - (config.startRadius + (index * config.thickness)) - tpH - 2 - (config.thickness*2));
+      })
+
+    $(this.$element.nativeElement)
+      .find('.apg-tooltip-title')
+      .html(d.label)
+
+    $(this.$element.nativeElement)
+      .find('.apg-tooltip-content')
+      .html(`${d.count} items - ${d.percentage}%`);
+
     $('.arc')
       .removeClass('highlighted')
       .addClass('underlighted');

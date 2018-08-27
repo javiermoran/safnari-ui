@@ -46,8 +46,8 @@
     <div class="col-12 col-md-6">
       <div class="graph-legends">
         <div class="graph-legends-container" id="graph-title-{{i}}" 
-            *ngFor="let ic of itemTypesGraphData.reverse(); let i = index">
-          <span class="graph-square" [ngStyle]="{'background-color': colorRange[i]}"></span>
+            *ngFor="let ic of rItemTypesGraphData; let i = index">
+          <span class="graph-square" [ngStyle]="{'background-color': rColorRange[i]}"></span>
           <span class="graph-text graph-label ml-2">{{ ic.label }}</span>
           <span class="graph-text ml-3">{{ ic.count }} ({{ic.percentage}}%)</span>
         </div>
