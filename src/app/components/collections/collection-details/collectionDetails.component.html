@@ -33,7 +33,7 @@
 
     <div class="row">
       <ng-container *ngFor="let item of filteredItems">
-        <app-item class="collection-item-container grid-view" [item]="item" (editClick)="onEditClick(item)"></app-item>
+        <app-item class="collection-item-container grid-view" [id]="item._id" [item]="item" (editClick)="onEditClick(item)"></app-item>
       </ng-container>
     </div>
     <div class="row text-center">

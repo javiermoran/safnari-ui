@@ -2,6 +2,7 @@ import { Component, Input, OnInit, EventEmitter, Output } from "@angular/core";
 import { Subscription } from "rxjs";
 import { ignoreElements } from "rxjs/operators";
 import { Item } from "../../../models/item.model";
+import { ItemsService } from "../../../services/items.service";
 
 @Component({
   selector: 'app-item',
@@ -9,12 +10,13 @@ import { Item } from "../../../models/item.model";
 })
 export class ItemComponent implements OnInit {
   @Input() item: Item;
+  @Input() id: string;
   @Output() editClick = new EventEmitter<Item>();
   isFlipped: boolean = false;
   isTranslated: boolean = false;
   cardStyle;
 
-  constructor() {}
+  constructor(private itemService: ItemsService) {}
 
   ngOnInit() {}
 
@@ -29,6 +31,18 @@ export class ItemComponent implements OnInit {
   toggleDetails() {
     this.isTranslated = !this.isTranslated;
     this.cardStyle = this.isTranslated ? {"background": "transparent"} : {};
+  }
+
+  delete() {
+    const del = confirm('Are you sure you want to delete the item?');
+    if(del) {
+      this.itemService.deleteItem(this.id)
+        .subscribe(() => {
+          this.itemService.itemAdded.next();
+        }, (err) => {
+          console.log(err);
+        })
+    }
   }
 
   edit() {

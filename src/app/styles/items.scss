@@ -46,6 +46,16 @@ app-item, .app-item {
         font-weight: normal;
         line-height: 0.9rem;
       }
+      .fa-trash {
+        cursor: pointer;
+        &:hover {
+          color: $text2-color;
+        }
+        &:before {
+          position: relative;
+          top: 1px;
+        }
+      }
     }
     .card-bottom {
       height: 32px;

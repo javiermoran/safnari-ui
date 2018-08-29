@@ -19,6 +19,10 @@ export class ItemsService {
     return this.httpClient.patch(`${this.API_URI}/${id}`, item);
   }
 
+  deleteItem(id: string) {
+    return this.httpClient.delete(`${this.API_URI}/${id}`);
+  }
+
   getItems(collection: string) {
     return this.httpClient.get(`${this.API_URI}?collection=${collection}`);
   }

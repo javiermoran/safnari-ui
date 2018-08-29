@@ -6,7 +6,7 @@ export class Item {
     public artist: string,
     public format: string,
     public picture: string,
-    public type: string,
+    public type: any,
     public coll: string
   ) {}
 }
