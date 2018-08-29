@@ -68,7 +68,6 @@ app-item, .app-item {
         width: 100%;
         backface-visibility: hidden;
         &.item-face-a {
-          cursor: pointer;
           z-index: 2;
           background-color: white;
         }
@@ -90,9 +89,11 @@ app-item, .app-item {
   .item-image {
     background-size: cover;
     margin-bottom: 0.5rem;
-    transition: all 0.4s;
+    transition: all 0.2s;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
     &.translated {
+      transition: all 0.4s;
       transform: translateY(-90%);
     }
     &.cbook {
@@ -100,6 +101,9 @@ app-item, .app-item {
     }
     &.record, &.bgame {
       padding-top: 100%;
+    }
+    &:hover:not(.translated) {
+      transform: translateY(-3%) scale(1.01);
     }
   }
   .small-label {

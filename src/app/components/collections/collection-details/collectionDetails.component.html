@@ -13,6 +13,7 @@
       <app-item-form [collection]="collection._id" 
                      [type]="collection.type._id" 
                      [typeName]="collection.type.name"
+                     [(item)]="editingItem"
                      (cancel)="cancel($event)">
       </app-item-form>
     </div>
@@ -32,7 +33,7 @@
 
     <div class="row">
       <ng-container *ngFor="let item of filteredItems">
-        <app-item class="collection-item-container grid-view" [item]="item"></app-item>
+        <app-item class="collection-item-container grid-view" [item]="item" (editClick)="onEditClick(item)"></app-item>
       </ng-container>
     </div>
     <div class="row text-center">

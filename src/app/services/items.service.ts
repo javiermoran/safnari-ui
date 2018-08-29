@@ -15,6 +15,10 @@ export class ItemsService {
     return this.httpClient.post(this.API_URI, item);
   }
 
+  updateItem(item: Item, id: string) {
+    return this.httpClient.patch(`${this.API_URI}/${id}`, item);
+  }
+
   getItems(collection: string) {
     return this.httpClient.get(`${this.API_URI}?collection=${collection}`);
   }

@@ -10,7 +10,7 @@
               <div class="small-label">{{item.publisher}}</div>
             </ng-container>
             <div class="item-btn-area" *ngIf="isTranslated">
-              <button class="btn btn-primary col-12">Edit</button>
+              <button (click)="edit()" class="btn btn-primary col-12">Edit</button>
             </div>
           </div>
       </div>

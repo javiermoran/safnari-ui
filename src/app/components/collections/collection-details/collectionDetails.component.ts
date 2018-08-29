@@ -5,6 +5,7 @@ import { Subscription } from "rxjs";
 import { ItemsService } from "../../../services/items.service";
 import { AlertsService } from "../../../services/alerts.service";
 import { AlertModel } from "../../../models/alert.model";
+import { Item } from "../../../models/item.model";
 
 @Component({
   selector: 'app-collection-details',
@@ -21,6 +22,7 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
   itemAdded: Subscription;
   id: string;
   collectionName: string;
+  editingItem: Item = null;
   
 
   constructor(
@@ -75,6 +77,7 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
   }
 
   toggleForm() {
+    this.editingItem = null;
     this.addingItem = !this.addingItem;
   }
 
@@ -121,6 +124,11 @@ export class CollectionDetailsComponent implements OnInit, OnDestroy {
 
   cancel() {
     this.addingItem = false;
+  }
+
+  onEditClick(item: Item) {
+    this.addingItem = true;
+    this.editingItem = item;
   }
 
   ngOnDestroy() {

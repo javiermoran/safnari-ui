@@ -11,7 +11,10 @@ export class ItemFormComponent implements OnInit, OnChanges {
   @Input() type: string;
   @Input() collection: string;
   @Input() typeName: string;
+  @Input() item: Item;
   @Output() cancel = new EventEmitter();
+  id: string;
+  editing: boolean;
   itemForm:FormGroup;
   image: any;
   form: any = {
@@ -31,17 +34,21 @@ export class ItemFormComponent implements OnInit, OnChanges {
 
   constructor(private itemService: ItemsService) {}
 
-  ngOnInit() {
-    this.initForm();
-  }
+  ngOnInit() {}
 
-  initForm() {
+  initForm(item: any) {
+    const title = item ? item.title || '' : '';
+    const number = item ? item.number || '' : '';
+    const publisher = item ? item.publisher || '' : '';
+    const artist = item ? item.artist || '' : '';
+    const format = item ? item.format || '' : '';
+
     this.itemForm = new FormGroup({
-      title: new FormControl('', Validators.required),
-      number: new FormControl('', Validators.min(0)),
-      publisher: new FormControl(''),
-      artist: new FormControl(''),
-      format: new FormControl('')
+      title: new FormControl(title, Validators.required),
+      number: new FormControl(number, Validators.min(0)),
+      publisher: new FormControl(publisher),
+      artist: new FormControl(artist),
+      format: new FormControl(format)
     });
   }
 
@@ -69,12 +76,14 @@ export class ItemFormComponent implements OnInit, OnChanges {
       this.type, 
       this.collection);
 
-      this.itemService.saveItem(newItem)
-        .subscribe((res: Item) => {
-          this.itemService.itemAdded.next(res);
-        }, (err) => {
-          console.log(err);
-        });
+    let observable = !this.editing ? this.itemService.saveItem(newItem) 
+          : this.itemService.updateItem(newItem, this.id)
+    
+    observable.subscribe((res: Item) => {
+        this.itemService.itemAdded.next(res);
+      }, (err) => {
+        console.log(err);
+      });
   }
 
   formCancel() {
@@ -91,6 +100,13 @@ export class ItemFormComponent implements OnInit, OnChanges {
       this.form.publisher = types.publisher.indexOf(type) !== -1;
       this.form.artist = types.artist.indexOf(type) !== -1;
       this.form.format = types.format.indexOf(type) !== -1;
+    }
+
+    if(changes.hasOwnProperty('item')) {
+      const current = changes.item.currentValue;
+      this.id = current ? current._id : '';
+      this.editing = current ? true : false;
+      this.initForm(current);
     }
   }
 }
